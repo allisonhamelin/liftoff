@@ -1,7 +1,7 @@
 <template>
-  <main>
+  <div>
     <LayoutNavbar />
-  </main>
+  </div>
 </template>
 
 <script lang="ts">
