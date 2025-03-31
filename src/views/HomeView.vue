@@ -1,41 +1,43 @@
 <template>
   <BaseLayout>
-    <div class="flex justify-between mb-10">
-      <h1 class="text-4xl">Launches</h1>
-      <div class="flex gap-2 items-center">
-        <label class="input w-80">
-          <IconSearch class="size-4" />
-          <input type="search" placeholder="Search" @input="onSearch" />
-        </label>
-        <button class="btn btn-secondary btn-sm" @click="onSort">
-          Sort by year
-          <IconArrowDown
-            class="size-3 transition-transform text-secondary-content"
-            :class="{ 'rotate-180': sort === 'asc' }"
-          />
-        </button>
+    <div class="w-[1280px] flex flex-col py-10 h-full">
+      <div class="flex justify-between mb-10">
+        <h1 class="text-4xl">Launches</h1>
+        <div class="flex gap-2 items-center">
+          <label class="input w-80">
+            <IconSearch class="size-4" />
+            <input type="search" placeholder="Search" @input="onSearch" />
+          </label>
+          <button class="btn btn-secondary btn-sm" @click="onSort">
+            Sort by year
+            <IconArrowDown
+              class="size-3 transition-transform text-secondary-content"
+              :class="{ 'rotate-180': sort === 'asc' }"
+            />
+          </button>
+        </div>
       </div>
+      <ul class="list bg-base-100 rounded-box shadow-md">
+        <li v-for="item in launchesInView" :key="item.id">
+          <RouterLink :to="`/launches/${item.id}`" class="list-row grid-cols-[3fr_1fr]">
+            <div class="flex gap-8">
+              <div
+                class="bg-secondary rounded-full size-30 flex justify-center items-center shrink-0"
+              >
+                <IconRocket class="size-14 text-secondary-content" />
+              </div>
+              <div class="flex flex-col">
+                <h2 class="text-2xl mb-2">Mission: {{ item.mission_name || item.id }}</h2>
+                <p class="text-base font-light">{{ item.details }}</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-end justify-between">
+              <p class="text-xl">{{ item.launch_year }}</p>
+            </div>
+          </RouterLink>
+        </li>
+      </ul>
     </div>
-    <ul class="list bg-base-100 rounded-box shadow-md">
-      <li v-for="item in launchesInView" :key="item.id">
-        <RouterLink :to="`/launches/${item.id}`" class="list-row grid-cols-[3fr_1fr]">
-          <div class="flex gap-8">
-            <div
-              class="bg-secondary rounded-full size-30 flex justify-center items-center shrink-0"
-            >
-              <IconRocket class="size-14 text-secondary-content" />
-            </div>
-            <div class="flex flex-col">
-              <h2 class="text-2xl mb-2">Mission: {{ item.mission_name || item.id }}</h2>
-              <p class="text-base font-light">{{ item.details }}</p>
-            </div>
-          </div>
-          <div class="flex flex-col items-end justify-between">
-            <p class="text-xl">{{ item.launch_year }}</p>
-          </div>
-        </RouterLink>
-      </li>
-    </ul>
   </BaseLayout>
 </template>
 

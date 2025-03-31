@@ -4,9 +4,7 @@
   </header>
   <main class="flex flex-col">
     <div class="w-full flex justify-center bg-base-300 px-6 h-full">
-      <div class="w-[1280px] flex flex-col py-10 h-full">
-        <slot />
-      </div>
+      <slot />
     </div>
   </main>
 </template>
