@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import LayoutNavbar from '@/components/LayoutNavbar.vue'
+import LayoutNavbar from '@/components/layout/LayoutNavbar.vue'
 
 export default defineComponent({
   components: {
