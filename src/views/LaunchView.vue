@@ -8,10 +8,10 @@
             <h1 class="text-5xl">{{ launch?.mission_name }}</h1>
           </div>
           <div class="flex gap-4">
-            <RouterLink class="btn hidden lg:flex btn-secondary btn-md" to="/">
+            <RouterLink class="btn hidden md:flex btn-secondary btn-md" to="/">
               <IconArrowLeft class="size-6" /><span class=""> Back to launches</span>
             </RouterLink>
-            <RouterLink class="btn btn-circle btn-secondary btn-md lg:hidden" to="/">
+            <RouterLink class="btn btn-circle btn-secondary btn-md md:hidden" to="/">
               <IconArrowLeft class="size-6" />
             </RouterLink>
             <a
@@ -33,11 +33,7 @@
                 <h2 class="card-title mb-4">Rocket</h2>
                 <p class="text-2xl md:text-3xl grow-0">{{ launch?.rocket.rocket_name }}</p>
               </div>
-              <div
-                class="bg-secondary rounded-full size-22 sm:size-30 flex justify-center items-center"
-              >
-                <IconRocket class="size-10 sm:size-14 text-secondary-content" />
-              </div>
+              <RocketImage />
             </div>
           </div>
           <div class="card card-border min-h-42 md:h-auto bg-base-100 w-full">
@@ -63,7 +59,7 @@ import { defineComponent } from 'vue'
 import BaseLayout from '@/components/layout/BaseLayout.vue'
 import IconArrowLeft from '@/components/icons/IconArrowLeft.vue'
 import IconExternal from '@/components/icons/IconExternal.vue'
-import IconRocket from '@/components/icons/IconRocket.vue'
+import RocketImage from '@/components/RocketImage.vue'
 import type { Launch, Launches } from '@/types.ts'
 
 interface LaunchViewData {
@@ -71,7 +67,7 @@ interface LaunchViewData {
 }
 
 export default defineComponent({
-  components: { BaseLayout, IconArrowLeft, IconExternal, IconRocket },
+  components: { BaseLayout, IconArrowLeft, IconExternal, RocketImage },
   props: {
     id: String,
   },

@@ -1,10 +1,10 @@
 <template>
   <BaseLayout>
     <div class="w-[1280px] flex flex-col py-20 h-full">
-      <div class="flex justify-between mb-10">
+      <div class="flex justify-between mb-10 gap-x-10 gap-y-6 flex-wrap">
         <h1 class="text-4xl">Launches</h1>
         <div class="flex gap-2 items-center">
-          <label class="input w-80">
+          <label class="input w-60 md:w-80">
             <IconSearch class="size-4" />
             <input type="search" placeholder="Search" @input="onSearch" />
           </label>
@@ -18,21 +18,19 @@
         </div>
       </div>
       <ul class="list bg-base-100 rounded-box shadow-md">
-        <li v-for="item in launchesInView" :key="item.id">
-          <RouterLink :to="`/launches/${item.id}`" class="list-row grid-cols-[3fr_1fr]">
-            <div class="flex gap-8">
-              <div
-                class="bg-secondary rounded-full size-30 flex justify-center items-center shrink-0"
-              >
-                <IconRocket class="size-14 text-secondary-content" />
-              </div>
-              <div class="flex flex-col">
+        <li
+          v-for="item in launchesInView"
+          :key="item.id"
+          class="not-last:[&_a]:rounded-b-none not-last:[&_a]:border-b-2 not-last:[&_a]:border-base-300"
+        >
+          <RouterLink :to="`/launches/${item.id}`" class="list-row flex flex-row">
+            <RocketImage class="hidden md:flex shrink-0" />
+            <div class="flex flex-col w-full">
+              <div class="flex justify-between w-full mb-6 md:mb-4 gap-4">
                 <h2 class="text-2xl mb-2">Mission: {{ item.mission_name || item.id }}</h2>
-                <p class="text-base font-light">{{ item.details }}</p>
+                <p class="text-xl shrink-0">{{ item.launch_year }}</p>
               </div>
-            </div>
-            <div class="flex flex-col items-end justify-between">
-              <p class="text-xl">{{ item.launch_year }}</p>
+              <p class="text-base font-light">{{ item.details }}</p>
             </div>
           </RouterLink>
         </li>
@@ -46,8 +44,8 @@
 import { defineComponent } from 'vue'
 import BaseLayout from '@/components/layout/BaseLayout.vue'
 import IconArrowDown from '@/components/icons/IconChevronDown.vue'
-import IconRocket from '@/components/icons/IconRocket.vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
+import RocketImage from '@/components/RocketImage.vue'
 import ScrollTrigger from '@/components/ScrollTrigger.vue'
 import payloadJson from '@/Payload.json'
 import type { Launch, Launches } from '@/types'
@@ -65,8 +63,8 @@ export default defineComponent({
   components: {
     BaseLayout,
     IconArrowDown,
-    IconRocket,
     IconSearch,
+    RocketImage,
     ScrollTrigger,
   },
   setup() {

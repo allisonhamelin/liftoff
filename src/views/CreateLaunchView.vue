@@ -63,14 +63,20 @@
                   @input="onChange"
                 />
               </fieldset>
-              <div class="flex justify-end gap-6 items-center mt-4">
-                <span v-if="success" class="text-success flex text-base items-center gap-2">
-                  Added <IconCheck class="size-4" />
-                </span>
-                <button class="btn btn-secondary w-40" type="submit" :disabled="busy">
-                  Submit
+              <div class="flex justify-end items-center mt-4">
+                <!-- <button class="btn btn-secondary w-40" :disabled="busy" @click="resetForm">
+                  Cancel
                   <span v-if="busy" class="loading loading-spinner" />
-                </button>
+                </button> -->
+                <div class="flex gap-6">
+                  <span v-if="success" class="text-success flex text-base items-center gap-2">
+                    Added <IconCheck class="size-4" />
+                  </span>
+                  <button class="btn btn-primary w-40" type="submit" :disabled="busy">
+                    Submit
+                    <span v-if="busy" class="loading loading-spinner" />
+                  </button>
+                </div>
               </div>
             </form>
           </div>
