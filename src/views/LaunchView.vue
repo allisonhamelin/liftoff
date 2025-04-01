@@ -1,25 +1,30 @@
 <template>
   <BaseLayout>
-    <div class="relative py-16">
-      <RouterLink class="btn btn-circle btn-xl absolute -left-26" to="/">
-        <IconArrowLeft class="size-8" />
-      </RouterLink>
-      <div class="w-4xl flex flex-col h-full">
-        <div class="flex justify-between flex-wrap mb-14 gap-y-10">
+    <div class="py-16">
+      <div class="lg:w-4xl flex flex-col h-full">
+        <div class="flex justify-between flex-wrap mb-14 gap-10">
           <div>
             <p class="text-secondary-200 text-base font-semibold mb-3 heading">Mission</p>
             <h1 class="text-5xl">{{ launch?.mission_name }}</h1>
           </div>
-          <a
-            v-if="launch?.links?.article_link"
-            class="btn btn-secondary"
-            :href="launch?.links?.article_link"
-            target="_blank"
-            rel="noopener"
-          >
-            View Article
-            <IconExternal class="size-5 text-secondary-content" />
-          </a>
+          <div class="flex gap-4">
+            <RouterLink class="btn hidden lg:flex btn-secondary btn-md" to="/">
+              <IconArrowLeft class="size-6" /><span class=""> Back to launches</span>
+            </RouterLink>
+            <RouterLink class="btn btn-circle btn-secondary btn-md lg:hidden" to="/">
+              <IconArrowLeft class="size-6" />
+            </RouterLink>
+            <a
+              v-if="launch?.links?.article_link"
+              class="btn btn-primary"
+              :href="launch?.links?.article_link"
+              target="_blank"
+              rel="noopener"
+            >
+              View Article
+              <IconExternal class="size-5 text-secondary-content" />
+            </a>
+          </div>
         </div>
         <div class="grid grid-cols-1 gap-y-8 md:grid-cols-2 gap-x-8 md:gap-y-12">
           <div class="card card-border min-h-42 md:h-auto bg-base-100 w-full">
