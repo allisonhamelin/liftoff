@@ -67,7 +67,7 @@ export default defineComponent({
     IconSearch,
   },
   setup() {
-    if (!localStorage.payload) {
+    if (!localStorage.launches) {
       localStorage.setItem('launches', JSON.stringify(payloadJson.data.launches))
     }
 
