@@ -7,41 +7,11 @@
             <p class="text-secondary-200 text-base font-semibold mb-3 heading">Mission</p>
             <h1 class="text-5xl">{{ launch?.mission_name }}</h1>
           </div>
-          <div class="flex gap-4">
-            <RouterLink class="btn hidden md:flex btn-secondary btn-md" to="/">
-              <IconArrowLeft class="size-6" /><span class=""> Back to launches</span>
-            </RouterLink>
-            <RouterLink class="btn btn-circle btn-secondary btn-md md:hidden" to="/">
-              <IconArrowLeft class="size-6" />
-            </RouterLink>
-            <a
-              v-if="launch?.links?.article_link"
-              class="btn btn-primary"
-              :href="launch?.links?.article_link"
-              target="_blank"
-              rel="noopener"
-            >
-              View Article
-              <IconExternal class="size-5 text-secondary-content" />
-            </a>
-          </div>
+          <LaunchActions :launch="launch" />
         </div>
         <div class="grid grid-cols-1 gap-y-8 md:grid-cols-2 gap-x-8 md:gap-y-12">
-          <div class="card card-border min-h-42 md:h-auto bg-base-100 w-full">
-            <div class="card-body gap-10 flex-row justify-between items-center">
-              <div class="flex flex-col h-full">
-                <h2 class="card-title mb-4">Rocket</h2>
-                <p class="text-2xl md:text-3xl grow-0">{{ launch?.rocket.rocket_name }}</p>
-              </div>
-              <RocketImage />
-            </div>
-          </div>
-          <div class="card card-border min-h-42 md:h-auto bg-base-100 w-full">
-            <div class="card-body">
-              <h2 class="card-title mb-4">Launch Date</h2>
-              <p class="text-lg">{{ launchDate }}</p>
-            </div>
-          </div>
+          <RocketCard :launch="launch" />
+          <DateCard :launch="launch" />
           <div class="card card-border bg-base-100 w-full md:col-span-2 min-h-42">
             <div class="card-body w-full">
               <h2 class="card-title mb-4">Details</h2>
@@ -57,9 +27,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import BaseLayout from '@/components/layout/BaseLayout.vue'
-import IconArrowLeft from '@/components/icons/IconArrowLeft.vue'
-import IconExternal from '@/components/icons/IconExternal.vue'
-import RocketImage from '@/components/RocketImage.vue'
+import DateCard from '@/components/launch/DateCard.vue'
+import LaunchActions from '@/components/launch/LaunchActions.vue'
+import RocketCard from '@/components/launch/RocketCard.vue'
+
 import type { Launch, Launches } from '@/types.ts'
 
 interface LaunchViewData {
@@ -67,7 +38,7 @@ interface LaunchViewData {
 }
 
 export default defineComponent({
-  components: { BaseLayout, IconArrowLeft, IconExternal, RocketImage },
+  components: { BaseLayout, DateCard, LaunchActions, RocketCard },
   props: {
     id: String,
   },
@@ -75,18 +46,6 @@ export default defineComponent({
     return {
       launch: undefined,
     }
-  },
-  computed: {
-    launchDate() {
-      return this.launch
-        ? new Date(this.launch?.launch_date_utc || '').toLocaleDateString('en-us', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-          })
-        : ''
-    },
   },
   mounted() {
     const launches: Launches = JSON.parse(localStorage.getItem('launches') || '')

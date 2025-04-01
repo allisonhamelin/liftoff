@@ -64,10 +64,6 @@
                 />
               </fieldset>
               <div class="flex justify-end items-center mt-4">
-                <!-- <button class="btn btn-secondary w-40" :disabled="busy" @click="resetForm">
-                  Cancel
-                  <span v-if="busy" class="loading loading-spinner" />
-                </button> -->
                 <div class="flex gap-6">
                   <span v-if="success" class="text-success flex text-base items-center gap-2">
                     Added <IconCheck class="size-4" />
@@ -93,6 +89,7 @@ import { required, url } from '@vuelidate/validators'
 import { v4 as uuidv4 } from 'uuid'
 import BaseLayout from '@/components/layout/BaseLayout.vue'
 import IconCheck from '@/components/icons/IconCheck.vue'
+
 import type { Launches, Launch } from '@/types.ts'
 
 interface CreateLaunchViewData {

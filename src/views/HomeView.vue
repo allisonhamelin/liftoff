@@ -17,24 +17,9 @@
           </button>
         </div>
       </div>
-      <ul class="list bg-base-100 rounded-box shadow-md">
-        <li
-          v-for="item in launchesInView"
-          :key="item.id"
-          class="not-last:[&_a]:rounded-b-none not-last:[&_a]:border-b-2 not-last:[&_a]:border-base-300"
-        >
-          <RouterLink :to="`/launches/${item.id}`" class="list-row flex flex-row p-6">
-            <RocketImage class="hidden md:flex shrink-0" />
-            <div class="flex flex-col w-full">
-              <div class="flex justify-between w-full mb-6 md:mb-4 gap-4">
-                <h2 class="text-2xl mb-2">Mission: {{ item.mission_name || item.id }}</h2>
-                <p class="text-xl shrink-0">{{ item.launch_year }}</p>
-              </div>
-              <p class="text-base font-light">{{ item.details }}</p>
-            </div>
-          </RouterLink>
-        </li>
-      </ul>
+
+      <LaunchList :launches="launchesInView" />
+
       <ScrollTrigger class="mt-20" @intersected="loadMore" />
     </div>
   </BaseLayout>
@@ -45,9 +30,10 @@ import { defineComponent } from 'vue'
 import BaseLayout from '@/components/layout/BaseLayout.vue'
 import IconArrowDown from '@/components/icons/IconChevronDown.vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
-import RocketImage from '@/components/RocketImage.vue'
+import LaunchList from '@/components/home/LaunchList.vue'
 import ScrollTrigger from '@/components/ScrollTrigger.vue'
 import payloadJson from '@/Payload.json'
+
 import type { Launch, Launches } from '@/types'
 
 interface HomeViewData {
@@ -64,7 +50,7 @@ export default defineComponent({
     BaseLayout,
     IconArrowDown,
     IconSearch,
-    RocketImage,
+    LaunchList,
     ScrollTrigger,
   },
   setup() {
