@@ -1,6 +1,6 @@
 <template>
   <BaseLayout>
-    <div class="w-[1280px] flex flex-col py-12 h-full">
+    <div class="w-[1280px] flex flex-col py-20 h-full">
       <div class="flex justify-between mb-10">
         <h1 class="text-4xl">Launches</h1>
         <div class="flex gap-2 items-center">
@@ -37,6 +37,7 @@
           </RouterLink>
         </li>
       </ul>
+      <ScrollTrigger class="mt-20" @intersected="loadMore" />
     </div>
   </BaseLayout>
 </template>
@@ -47,6 +48,7 @@ import BaseLayout from '@/components/layout/BaseLayout.vue'
 import IconArrowDown from '@/components/icons/IconChevronDown.vue'
 import IconRocket from '@/components/icons/IconRocket.vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
+import ScrollTrigger from '@/components/ScrollTrigger.vue'
 import payloadJson from '@/Payload.json'
 import type { Launch, Launches } from '@/types'
 
@@ -55,8 +57,8 @@ interface HomeViewData {
   pageSize: number
   search: string
   sort: string
-  filteredSortedLaunches: Launches | null
-  launchesInView: Launches | null
+  filteredSortedLaunches: Launches
+  launchesInView: Launches
 }
 
 export default defineComponent({
@@ -65,6 +67,7 @@ export default defineComponent({
     IconArrowDown,
     IconRocket,
     IconSearch,
+    ScrollTrigger,
   },
   setup() {
     if (!localStorage.launches) {
@@ -81,8 +84,8 @@ export default defineComponent({
       pageSize: 5,
       search: '',
       sort: 'asc',
-      filteredSortedLaunches: null,
-      launchesInView: null,
+      filteredSortedLaunches: [],
+      launchesInView: [],
     }
   },
   mounted() {
@@ -132,9 +135,9 @@ export default defineComponent({
       this.search = target?.value
       this.filterAndSortLaunches()
     },
-    onScrollToBottom() {
+    loadMore() {
       this.page++
-      this.filterAndSortLaunches()
+      this.launchesInView = this.filteredSortedLaunches.slice(0, this.page * this.pageSize)
     },
     onSort() {
       if (this.sort === 'asc') {

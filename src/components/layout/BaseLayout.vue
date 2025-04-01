@@ -1,12 +1,14 @@
 <template>
-  <header>
-    <LayoutNavbar />
-  </header>
-  <main class="flex flex-col">
-    <div class="w-full flex justify-center bg-base-300 px-6 h-full">
-      <slot />
-    </div>
-  </main>
+  <div>
+    <header>
+      <LayoutNavbar />
+    </header>
+    <main class="flex flex-col">
+      <div class="w-full flex justify-center bg-base-300 px-6 h-full">
+        <slot />
+      </div>
+    </main>
+  </div>
 </template>
 
 <script lang="ts">
