@@ -147,19 +147,22 @@ export default defineComponent({
     },
     createNewLaunch() {
       const id = uuidv4()
+
+      const missionName = encodeURIComponent(this.missionName.toString())
       const launchDateUTC = this.getLaunchDateUTC()
-      const launch_year = this.getLaunchYear()
-      const articleLink = this.articleLink?.toString() || ''
+      const launchYear = this.getLaunchYear()
+      const details = this.details ? encodeURIComponent(this.details) : null
+      const articleLink = this.articleLink ? encodeURIComponent(this.articleLink.toString()) : null
 
       return {
         id,
-        mission_name: this.missionName,
+        mission_name: missionName,
         launch_date_utc: launchDateUTC,
-        launch_year,
+        launch_year: launchYear,
         rocket: {
-          rocket_name: this.rocketName,
+          rocket_name: encodeURIComponent(this.rocketName),
         },
-        details: this.details,
+        details,
         links: {
           article_link: articleLink,
         },
@@ -172,6 +175,9 @@ export default defineComponent({
     getLaunchYear() {
       const date = new Date(this.launchDate || '')
       return date.getFullYear().toString()
+    },
+    getSanitizedUrl() {
+      return this.articleLink ? encodeURIComponent(this.articleLink.toString()) : null
     },
     onChange() {
       this.success = false
