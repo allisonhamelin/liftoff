@@ -1,6 +1,6 @@
 <template>
   <BaseLayout>
-    <div class="w-[1280px] flex flex-col py-10 h-full">
+    <div class="w-[1280px] flex flex-col py-12 h-full">
       <div class="flex justify-between mb-10">
         <h1 class="text-4xl">Launches</h1>
         <div class="flex gap-2 items-center">
@@ -44,7 +44,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import BaseLayout from '@/components/layout/BaseLayout.vue'
-import IconArrowDown from '@/components/icons/IconArrowDown.vue'
+import IconArrowDown from '@/components/icons/IconChevronDown.vue'
 import IconRocket from '@/components/icons/IconRocket.vue'
 import IconSearch from '@/components/icons/IconSearch.vue'
 import payloadJson from '@/Payload.json'
