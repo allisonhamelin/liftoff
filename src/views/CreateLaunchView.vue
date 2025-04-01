@@ -1,6 +1,6 @@
 <template>
   <BaseLayout>
-    <div class="w-4xl flex flex-col py-10 h-full">
+    <div class="w-4xl flex flex-col py-16 md:py-10 h-full">
       <div class="flex w-full flex-col items-center">
         <div class="max-w-4xl w-full">
           <h1 class="text-4xl mb-10">Create Launch</h1>
@@ -47,7 +47,7 @@
                   v-model="articleLink"
                   type="url"
                   placeholder="https://"
-                  class="input w-3/4"
+                  class="input lg:w-3/4"
                   :class="{ 'input-error': v$.articleLink.$error }"
                   @input="onChange"
                 />

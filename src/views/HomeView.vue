@@ -1,6 +1,6 @@
 <template>
   <BaseLayout>
-    <div class="w-[1280px] flex flex-col py-20 h-full">
+    <div class="w-[1280px] flex flex-col py-16 md:py-10 h-full">
       <div class="flex justify-between mb-10 gap-x-10 gap-y-6 flex-wrap">
         <h1 class="text-4xl">Launches</h1>
         <div class="flex gap-2 items-center">
@@ -23,7 +23,7 @@
           :key="item.id"
           class="not-last:[&_a]:rounded-b-none not-last:[&_a]:border-b-2 not-last:[&_a]:border-base-300"
         >
-          <RouterLink :to="`/launches/${item.id}`" class="list-row flex flex-row">
+          <RouterLink :to="`/launches/${item.id}`" class="list-row flex flex-row p-6">
             <RocketImage class="hidden md:flex shrink-0" />
             <div class="flex flex-col w-full">
               <div class="flex justify-between w-full mb-6 md:mb-4 gap-4">
