@@ -1,6 +1,6 @@
 # liftoff
 
-A Vue.js webapp for viewing and managing space launches (not live data). https://liftoff-project.vercel.app/
+A Vue.js test project for viewing and managing space launches (not live data). https://liftoff-project.vercel.app/
 
 ## Recommended IDE Setup
 
